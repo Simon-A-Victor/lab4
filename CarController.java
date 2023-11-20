@@ -81,4 +81,21 @@ public class CarController {
             ((Saab95) car).setTurboOff();
         }
     }
+
+    /* void liftBed(){
+        for (Car car : cars){
+            if (car.getClass() != Saab95.class && car.getClass() != Volvo240.class){
+                car.tiltPlatform(0);
+            };
+        }
+    }
+    void lowerBed(){
+        for (Car car : cars){
+            if (car.getClass() != Saab95.class && car.getClass() != Volvo240.class){
+                car.tiltPlatform(70);
+            };
+        }
+    }
+
+     */
 }
