@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -11,13 +12,18 @@ public class DrawPanel extends JPanel{
 
     // Just a single image, TODO: Generalize
     BufferedImage volvoImage;
+    BufferedImage saabImage;
+    ArrayList<BufferedImage> images;
     // To keep track of a singel cars position
     Point volvoPoint = new Point();
+    Point saabPoint = new Point();
+
+    ArrayList<Point> points;
 
     // TODO: Make this genereal for all cars
-    void moveit(int x, int y){
-        volvoPoint.x = x;
-        volvoPoint.y = y;
+    void moveit(int x, int y, int index){
+        points.get(index).x = x;
+        points.get(index).y = y;
     }
 
     // Initializes the panel and reads the images
@@ -34,6 +40,13 @@ public class DrawPanel extends JPanel{
             // Rememember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
             // if you are starting in IntelliJ.
             volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"));
+            saabImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg"));
+            this.images = new ArrayList<BufferedImage>();
+            images.add(volvoImage);
+            images.add(saabImage);
+            this.points = new ArrayList<Point>();
+            points.add(volvoPoint);
+            points.add(saabPoint);
         } catch (IOException ex)
         {
             ex.printStackTrace();
@@ -46,6 +59,9 @@ public class DrawPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(volvoImage, volvoPoint.x, volvoPoint.y, null); // see javadoc for more info on the parameters
+        for(int index = 0; index < images.size(); index++){
+            g.drawImage(images.get(index), points.get(index).x, points.get(index).y, null); // see javadoc for more info on the parameters
+        }
+
     }
 }
