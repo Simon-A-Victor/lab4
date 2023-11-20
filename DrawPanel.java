@@ -60,8 +60,7 @@ public class DrawPanel extends JPanel{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         for(int index = 0; index < images.size(); index++){
-            g.drawImage(images.get(index), volvoPoint.x, volvoPoint.y, null); // see javadoc for more info on the parameters
-            g.drawImage(images.get(index), saabPoint.x, saabPoint.y, null);
+            g.drawImage(images.get(index), points.get(index).x, points.get(index).y, null); // see javadoc for more info on the parameters
         }
 
     }
