@@ -61,4 +61,16 @@ public class CarController {
             car.gas(gas);
         }
     }
+
+    void turboOn(){
+        for (Car car : cars){
+            ((Saab95) car).setTurboOn();
+        }
+    }
+
+    void turboOff(){
+        for (Car car : cars){
+            ((Saab95) car).setTurboOff();
+        }
+    }
 }
