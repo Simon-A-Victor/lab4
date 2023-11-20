@@ -17,6 +17,7 @@ public class Vehicle implements Movable, Loadable {
         this.y = y;
         this.size = size;
         this.setActive();
+        this.setDirection(Directions.NORTH);
     }
     public Color getColor(){
         return color;
@@ -52,13 +53,13 @@ public class Vehicle implements Movable, Loadable {
         if (this.isActive()){
             switch (this.getDirection()){
                 case NORTH:
-                    this.setYPosition(this.getYPosition() + this.getCurrentSpeed());
+                    this.setYPosition(this.getYPosition() - this.getCurrentSpeed());
                     break;
                 case WEST:
                     this.setXPosition(this.getXPosition() - this.getCurrentSpeed());
                     break;
                 case SOUTH:
-                    this.setYPosition(this.getYPosition() - this.getCurrentSpeed());
+                    this.setYPosition(this.getYPosition() + this.getCurrentSpeed());
                     break;
                 case EAST:
                     this.setXPosition(this.getXPosition() + this.getCurrentSpeed());
