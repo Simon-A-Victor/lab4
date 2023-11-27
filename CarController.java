@@ -34,7 +34,7 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
         cc.volvo = new Volvo240(0,0);
-        cc.volvo.setDirection(Directions.SOUTH);
+        //cc.volvo.setDirection(Directions.SOUTH);
         cc.saab = new Saab95(0,100);
         cc.scania = new Scania(0, 200);
         cc.cars.add(cc.volvo);
@@ -118,7 +118,7 @@ public class CarController {
     }
 
     private boolean checkBottomWallCollision(MotorVehicle car){
-        return car.getDirection() == Directions.SOUTH && car.getYPosition() + 60 > 660;
+        return car.getDirection() == Directions.SOUTH && car.getYPosition() + 60 > 560;
     }
 
     void invertDirection(MotorVehicle car){
