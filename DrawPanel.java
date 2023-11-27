@@ -23,7 +23,7 @@ public class DrawPanel extends JPanel{
     }
 
     // Initializes the panel and reads the images
-    public DrawPanel(int x, int y, ArrayList<Car> cars) {
+    public DrawPanel(int x, int y, ArrayList<MotorVehicle> cars) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
@@ -31,29 +31,14 @@ public class DrawPanel extends JPanel{
         this.points = new ArrayList<Point>();
         // Print an error message in case file is not found with a try/catch block
         try {
-            // You can remove the "pics" part if running outside of IntelliJ and
-            // everything is in the same main folder.
-            // volvoImage = ImageIO.read(new File("Volvo240.jpg"));
-
-            // Rememember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
-            // if you are starting in IntelliJ.
-
-            for (Car car : cars){
+            for (MotorVehicle car : cars){
                 points.add(new Point());
-                if (car instanceof Volvo240){
-                    images.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg")));
-                }
-                else if (car instanceof Saab95){
-                    images.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg")));
-                }
+                images.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/"+car.getModelName()+".jpg")));
             }
         } catch (IOException ex)
         {
             ex.printStackTrace();
         }
-
-
-
     }
 
     // This method is called each time the panel updates/refreshes/repaints itself
