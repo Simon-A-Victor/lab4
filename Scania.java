@@ -6,23 +6,24 @@ public class Scania extends PlatformVehicle {
         super(2, 250, Color.black, "Scania", x, y, 10);
     }
 
-    public void tiltPlatform(int degrees) {
-        if(this.isStationary()){
-            this.setPlatformAngle(this.getPlatformAngle() + degrees);
-
-            if (this.getPlatformAngle() > 70) {
-                this.setPlatformAngle(70);
-            } else if (this.getPlatformAngle() < 0) {
-                this.setPlatformAngle(0);
-            }
+    public void tiltPlatform(double degrees) {
+        if (checkIfMaxReached(degrees)){
+            setPlatformAngle(70);
+        } else if (checkIfMinReached(degrees)) {
+            setPlatformAngle(0);
+        }
+        else {
+            setPlatformAngle(getPlatformAngle() + degrees);
         }
     }
 
-    @Override
-    public double speedFactor() {
+    private boolean checkIfMaxReached(double degrees){return getPlatformAngle() + degrees > 70;}
+    private boolean checkIfMinReached(double degrees){return getPlatformAngle() + degrees < 0;}
+
+    protected double speedFactor() {
         return 1;
     }
 
-
-
 }
+
+

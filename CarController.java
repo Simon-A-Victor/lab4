@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -28,7 +29,9 @@ public class CarController {
     public static void main(String[] args) {
         // Instance of this class
         CarController cc = new CarController();
-
+        Volvo240 volvo = new Volvo240(0,450);
+        Saab95 saab = new Saab95(300,450);
+        Scania scania = new Scania(300, 450);
         cc.cars.add(new Volvo240(0,450));
         cc.cars.add(new Saab95(300,450));
         cc.cars.add(new Volvo240(500,450));

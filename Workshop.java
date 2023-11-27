@@ -1,7 +1,6 @@
 import java.util.ArrayList;
-import java.util.Collection;
 
-public class Workshop<V extends Vehicle>{
+public class Workshop<V extends MotorVehicle>{
 
     private double x;
     private double y;

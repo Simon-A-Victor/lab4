@@ -6,7 +6,7 @@ public class Saab95 extends Car {
 
 
     public Saab95(double x, double y) {
-        super(2, 125, Color.red, "Saab95", x, y, 2);
+        super(2, Color.red,  "Saab95", x, y, 2, 125);
         turboOn = false;
     }
 
