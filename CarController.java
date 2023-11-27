@@ -34,7 +34,7 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
         cc.volvo = new Volvo240(0,0);
-        cc.volvo.setDirection(Directions.SOUTH);
+        //cc.volvo.setDirection(Directions.SOUTH);
         cc.saab = new Saab95(0,100);
         cc.scania = new Scania(0, 200);
         cc.cars.add(cc.volvo);
@@ -53,7 +53,7 @@ public class CarController {
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             for (MotorVehicle car : cars) {
-                handleWallCollison(car);
+                handleWallCollision(car);
                 car.move();
                 int x = (int) Math.round(car.getXPosition());
                 int y = (int) Math.round(car.getYPosition());
@@ -94,7 +94,7 @@ public class CarController {
         scania.tiltPlatform(70);
     }
 
-    private void handleWallCollison(MotorVehicle car){
+    private void handleWallCollision(MotorVehicle car){
             if (checkWallCollisions(car)){
                 car.stopEngine();
                 invertDirection(car);
@@ -103,9 +103,9 @@ public class CarController {
     }
 
     private boolean checkWallCollisions(MotorVehicle car){
-        return (checkBottomWallCollision(car) || checkTopWallCollision(car) || checkRightWallCollision(car) || checkLeftWallCollison(car));
+        return (checkBottomWallCollision(car) || checkTopWallCollision(car) || checkRightWallCollision(car) || checkLeftWallCollision(car));
     }
-    private boolean checkLeftWallCollison(MotorVehicle car){
+    private boolean checkLeftWallCollision(MotorVehicle car){
         return car.getDirection() == Directions.WEST && car.getXPosition() < 0;
     }
 
@@ -118,7 +118,7 @@ public class CarController {
     }
 
     private boolean checkBottomWallCollision(MotorVehicle car){
-        return car.getDirection() == Directions.SOUTH && car.getYPosition() + 60 > 540;
+        return car.getDirection() == Directions.SOUTH && car.getYPosition() + 60 > 560;
     }
 
     void invertDirection(MotorVehicle car){
