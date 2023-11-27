@@ -118,7 +118,7 @@ public class CarController {
     }
 
     private boolean checkBottomWallCollision(MotorVehicle car){
-        return car.getDirection() == Directions.SOUTH && car.getYPosition() + 60 > 540;
+        return car.getDirection() == Directions.SOUTH && car.getYPosition() + 60 > 600;
     }
 
     void invertDirection(MotorVehicle car){
