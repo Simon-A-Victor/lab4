@@ -53,7 +53,7 @@ public class CarController {
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             for (MotorVehicle car : cars) {
-                handleWallCollison(car);
+                handleWallCollision(car);
                 car.move();
                 int x = (int) Math.round(car.getXPosition());
                 int y = (int) Math.round(car.getYPosition());
@@ -103,7 +103,7 @@ public class CarController {
     }
 
     private boolean checkWallCollisions(MotorVehicle car){
-        return (checkBottomWallCollision(car) || checkTopWallCollision(car) || checkRightWallCollision(car) || checkLeftWallCollison(car));
+        return (checkBottomWallCollision(car) || checkTopWallCollision(car) || checkRightWallCollision(car) || checkLeftWallCollision(car));
     }
     private boolean checkLeftWallCollision(MotorVehicle car){
         return car.getDirection() == Directions.WEST && car.getXPosition() < 0;
@@ -118,7 +118,7 @@ public class CarController {
     }
 
     private boolean checkBottomWallCollision(MotorVehicle car){
-        return car.getDirection() == Directions.SOUTH && car.getYPosition() + 60 > 600;
+        return car.getDirection() == Directions.SOUTH && car.getYPosition() + 60 > 660;
     }
 
     void invertDirection(MotorVehicle car){
