@@ -94,7 +94,7 @@ public class CarController {
         scania.tiltPlatform(70);
     }
 
-    private void handleWallCollison(MotorVehicle car){
+    private void handleWallCollision(MotorVehicle car){
             if (checkWallCollisions(car)){
                 car.stopEngine();
                 invertDirection(car);
@@ -105,7 +105,7 @@ public class CarController {
     private boolean checkWallCollisions(MotorVehicle car){
         return (checkBottomWallCollision(car) || checkTopWallCollision(car) || checkRightWallCollision(car) || checkLeftWallCollison(car));
     }
-    private boolean checkLeftWallCollison(MotorVehicle car){
+    private boolean checkLeftWallCollision(MotorVehicle car){
         return car.getDirection() == Directions.WEST && car.getXPosition() < 0;
     }
 
