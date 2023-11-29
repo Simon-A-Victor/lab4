@@ -49,6 +49,5 @@ public class DrawPanel extends JPanel{
         for(int index = 0; index < images.size(); index++){
             g.drawImage(images.get(index), points.get(index).x, points.get(index).y, null); // see javadoc for more info on the parameters
         }
-
     }
 }

@@ -93,6 +93,16 @@ public class CarController {
     void lowerBed(){
         scania.tiltPlatform(70);
     }
+    void startAllVehicles(){
+        for(MotorVehicle car : cars){
+            car.startEngine();
+        }
+    }
+    void stopAllVehicles(){
+        for(MotorVehicle car: cars){
+            car.stopEngine();
+        }
+    }
 
     private void handleWallCollision(MotorVehicle car){
             if (checkWallCollisions(car)){
