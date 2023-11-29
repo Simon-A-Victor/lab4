@@ -1,6 +1,6 @@
 import java.awt.*;
 
-abstract class MotorVehicle implements Movable, Loadable {
+abstract class MotorVehicle implements Movable, Loadable{
     private int nrDoors;
     private double currentSpeed;
     private Color color;
@@ -21,7 +21,6 @@ abstract class MotorVehicle implements Movable, Loadable {
         this.size = size;
         this.enginePower = enginePower;
         this.setActive();
-        this.stopEngine();
         this.setDirection(Directions.EAST);
     }
 
@@ -160,5 +159,17 @@ abstract class MotorVehicle implements Movable, Loadable {
         if (0 <= amount && amount <= 1){
             decrementSpeed(amount);
         }
+    }
+
+    public MotorVehicle(MotorVehicle motorVehicle){
+        this.nrDoors = motorVehicle.getNrDoors();
+        this.color = motorVehicle.getColor();
+        this.modelName = motorVehicle.getModelName();
+        this.x = motorVehicle.getXPosition();
+        this.y = motorVehicle.getYPosition();
+        this.size = motorVehicle.getSize();
+        this.enginePower = motorVehicle.getEnginePower();
+        this.active = motorVehicle.active;
+        this.setDirection(motorVehicle.getDirection());
     }
 }

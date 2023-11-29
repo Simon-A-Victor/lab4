@@ -53,8 +53,8 @@ public class CarController {
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             for (MotorVehicle car : cars) {
-                handleWallCollision(car);
                 car.move();
+                handleWallCollision(car);
                 int x = (int) Math.round(car.getXPosition());
                 int y = (int) Math.round(car.getYPosition());
                 frame.drawPanel.moveit(x, y, cars.indexOf(car));
@@ -105,30 +105,43 @@ public class CarController {
     }
 
     private void handleWallCollision(MotorVehicle car){
-            if (checkWallCollisions(car)){
-                car.stopEngine();
-                invertDirection(car);
-                car.startEngine();
-            }
+        boolean collision = false;
+        if (checkTopWallCollision(car)){
+            car.setYPosition(0);
+            collision = true;
+        }
+        else if (checkBottomWallCollision(car)){
+            car.setYPosition(560);
+            collision = true;
+        }
+        else if (checkLeftWallCollision(car)){
+            car.setXPosition(0);
+            collision = true;
+        } else if (checkRightWallCollision(car)) {
+            car.setXPosition(700);
+            collision = true;
+        }
+        if (collision){
+            car.stopEngine();
+            invertDirection(car);
+            car.startEngine();
+        }
     }
 
-    private boolean checkWallCollisions(MotorVehicle car){
-        return (checkBottomWallCollision(car) || checkTopWallCollision(car) || checkRightWallCollision(car) || checkLeftWallCollision(car));
-    }
     private boolean checkLeftWallCollision(MotorVehicle car){
-        return car.getDirection() == Directions.WEST && car.getXPosition() < 0;
+        return /*car.getDirection() == Directions.WEST && */car.getXPosition() < 0;
     }
 
     private boolean checkRightWallCollision(MotorVehicle car){
-        return car.getDirection() == Directions.EAST &&car.getXPosition() + 100 > 800;
+        return /*car.getDirection() == Directions.EAST && */car.getXPosition() + 100  > 800;
     }
 
     private boolean checkTopWallCollision(MotorVehicle car){
-        return car.getDirection() == Directions.NORTH && car.getYPosition() < 0;
+        return /*car.getDirection() == Directions.NORTH && */ car.getYPosition()  < 0;
     }
 
     private boolean checkBottomWallCollision(MotorVehicle car){
-        return car.getDirection() == Directions.SOUTH && car.getYPosition() + 60 > 560;
+        return /*car.getDirection() == Directions.SOUTH && */ car.getYPosition() + 60 > 560;
     }
 
     void invertDirection(MotorVehicle car){

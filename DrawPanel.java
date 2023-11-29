@@ -11,10 +11,10 @@ import javax.swing.*;
 public class DrawPanel extends JPanel{
 
     // Just a single image, TODO: Generalize
-    ArrayList<BufferedImage> images;
+    private ArrayList<BufferedImage> images;
     // To keep track of a singel cars position
 
-    ArrayList<Point> points;
+    private ArrayList<Point> points;
 
     // TODO: Make this genereal for all cars
     void moveit(int x, int y, int index){
