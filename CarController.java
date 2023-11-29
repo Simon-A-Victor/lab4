@@ -33,6 +33,7 @@ public class CarController {
     public static void main(String[] args) {
         // Instance of this class
         CarController cc = new CarController();
+        ArrayList<String> modelNames = new ArrayList<String>();
         cc.volvo = new Volvo240(0,0);
         //cc.volvo.setDirection(Directions.SOUTH);
         cc.saab = new Saab95(0,100);
@@ -41,8 +42,17 @@ public class CarController {
         cc.cars.add(cc.saab);
         cc.cars.add(cc.scania);
 
+
+        // Note: should use .contains() to check for only unique values
+        // this is not needed now because we KNOW it won't in this stage take in
+        // duplicate values
+        for ( MotorVehicle car : cc.cars
+             ) {
+            modelNames.add(car.getModelName());
+        }
+
         // Start a new view and send a reference of self
-        cc.frame = new CarView("CarSim 1.0", cc);
+        cc.frame = new CarView("CarSim 1.0", cc, modelNames);
         // Start the timer
         cc.timer.start();
     }

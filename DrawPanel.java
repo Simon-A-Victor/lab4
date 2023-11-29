@@ -3,6 +3,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -23,7 +24,7 @@ public class DrawPanel extends JPanel{
     }
 
     // Initializes the panel and reads the images
-    public DrawPanel(int x, int y, ArrayList<MotorVehicle> cars) {
+    public DrawPanel(int x, int y, ArrayList<MotorVehicle> cars, ArrayList<String> modelNames) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
@@ -31,9 +32,10 @@ public class DrawPanel extends JPanel{
         this.points = new ArrayList<Point>();
         // Print an error message in case file is not found with a try/catch block
         try {
-            for (MotorVehicle car : cars){
+            for (Object car : cars){
                 points.add(new Point());
-                images.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/"+car.getModelName()+".jpg")));
+                int index = cars.indexOf(car);
+                images.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/"+modelNames.get(index)+".jpg")));
             }
         } catch (IOException ex)
         {
