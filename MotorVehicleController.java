@@ -104,10 +104,14 @@ public class MotorVehicleController {
     }
 
     void liftBed(){
-        scania.tiltPlatform(-70);
+        for (MotorVehicle car: model.vehicles){
+            ((Scania) car).tiltPlatform(-70);
+        }
     }
     void lowerBed(){
-        scania.tiltPlatform(70);
+            for (MotorVehicle car : model.vehicles){
+                ((Scania) car).tiltPlatform(70);
+            }
     }
     void startAllVehicles(){
         for(MotorVehicle car : cars){
