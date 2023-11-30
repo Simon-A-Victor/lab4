@@ -1,3 +1,9 @@
+package Model;
+
+import Application.MotorVehiclePositionObserver;
+import Model.Directions;
+import Model.MotorVehicle;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -39,9 +45,6 @@ public class MotorVehicleModel {
                 int x = (int) Math.round(car.getXPosition());
                 int y = (int) Math.round(car.getYPosition());
                 multiCastPositionChange(x, y, vehicles.indexOf(car));
-                //frame.drawPanel.moveit(x, y, cars.indexOf(car));
-                // repaint() calls the paintComponent method of the panel
-                //frame.drawPanel.repaint();
             }
             multiCastTickUpdate();
         }

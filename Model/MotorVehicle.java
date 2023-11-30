@@ -1,6 +1,10 @@
+package Model;
+
+import Model.Directions;
+
 import java.awt.*;
 
-abstract class MotorVehicle implements Movable, Loadable{
+public abstract class MotorVehicle implements Movable, Loadable {
     private int nrDoors;
     private double currentSpeed;
     private Color color;

@@ -1,28 +1,16 @@
+package Controller;
+
+import Controller.MotorVehicleController;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
-/**
- * This class represents the full view of the MVC pattern of your car simulator.
- * It initializes with being center on the screen and attaching it's controller in it's state.
- * It communicates with the Controller by calling methods of it when an action fires of in
- * each of it's components.
- * TODO: Write more actionListeners and wire the rest of the buttons
- **/
-
-public class MotorVehicleView extends JFrame{
-    private static final int X = 800;
-    private static final int Y = 800;
-
-    // The controller member
-    MotorVehicleController carC;
-
-    DrawPanel drawPanel;
-
+public class MotorVehicleWidgets extends JPanel {
+    private final MotorVehicleController carC;
     JPanel controlPanel = new JPanel();
 
     JPanel gasPanel = new JPanel();
@@ -40,23 +28,14 @@ public class MotorVehicleView extends JFrame{
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
 
-    // Constructor
-    public MotorVehicleView(String framename, MotorVehicleController cc, ArrayList<String> modelNames){
+    public MotorVehicleWidgets(MotorVehicleController cc, int X, int Y){
         this.carC = cc;
-        //this.drawPanel = new DrawPanel(X, Y-240, carC.cars, modelNames);
-        initComponents(framename);
+        initComponents(X, Y);
     }
 
-    // Sets everything in place and fits everything
-    // TODO: Take a good look and make sure you understand how these methods and components work
-    private void initComponents(String title) {
-
-        this.setTitle(title);
+    private void initComponents(int X, int Y) {
         this.setPreferredSize(new Dimension(X,Y));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-
-        this.add(drawPanel);
-
 
         //
         SpinnerModel spinnerModel =
@@ -164,7 +143,7 @@ public class MotorVehicleView extends JFrame{
 
 
         // Make the frame pack all it's components by respecting the sizes if possible.
-        this.pack();
+        //this.pack();
 
         // Get the computer screen resolution
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -173,6 +152,6 @@ public class MotorVehicleView extends JFrame{
         // Make the frame visible
         this.setVisible(true);
         // Make sure the frame exits when "x" is pressed
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //his.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
