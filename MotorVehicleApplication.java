@@ -19,10 +19,13 @@ public class MotorVehicleApplication {
             modelNames.add(vehicle.getModelName());
         }
         DrawPanel view = new DrawPanel(model.getWorldSizeX(), model.getWorldSizeY(),modelNames);
+        model.addObserver(view);
 
         MotorVehicleApplicationWindow window = new MotorVehicleApplicationWindow();
         window.add(view);
         window.add(widgets);
+
+
 
         //MotorVehicleView view = new MotorVehicleView("CarSim 1.0", controller, modelNames);
 

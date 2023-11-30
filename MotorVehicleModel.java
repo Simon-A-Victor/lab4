@@ -17,6 +17,7 @@ public class MotorVehicleModel {
 
     public MotorVehicleModel(ArrayList<MotorVehicle> vehicles){
         this.vehicles = vehicles;
+        this.timer.start();
     }
 
     private int worldSizeX = 800;
@@ -34,6 +35,7 @@ public class MotorVehicleModel {
         public void actionPerformed(ActionEvent e) {
             for (MotorVehicle car : vehicles) {
                 car.move();
+                handleWallCollision(car);
                 int x = (int) Math.round(car.getXPosition());
                 int y = (int) Math.round(car.getYPosition());
                 multiCastPositionChange(x, y, vehicles.indexOf(car));
