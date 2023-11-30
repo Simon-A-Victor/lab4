@@ -9,7 +9,7 @@ import javax.swing.*;
 
 // This panel represent the animated part of the view with the car images.
 
-public class DrawPanel extends JPanel{
+public class DrawPanel extends JPanel implements MotorVehiclePositionObserver{
 
     // Just a single image, TODO: Generalize
     private ArrayList<BufferedImage> images;
@@ -18,13 +18,18 @@ public class DrawPanel extends JPanel{
     private ArrayList<Point> points;
 
     // TODO: Make this genereal for all cars
-    void moveit(int x, int y, int index){
+    public void actOnMotorVehiclePositionUpdate(int x, int y, int index){
         points.get(index).x = x;
         points.get(index).y = y;
     }
 
+    @Override
+    public void actOnTickChange() {
+        repaint();
+    }
+
     // Initializes the panel and reads the images
-    public DrawPanel(int x, int y, ArrayList<MotorVehicle> cars, ArrayList<String> modelNames) {
+    public DrawPanel(int x, int y, ArrayList<String> modelNames) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
@@ -32,10 +37,9 @@ public class DrawPanel extends JPanel{
         this.points = new ArrayList<Point>();
         // Print an error message in case file is not found with a try/catch block
         try {
-            for (Object car : cars){
+            for (String modelName : modelNames){
                 points.add(new Point());
-                int index = cars.indexOf(car);
-                images.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/"+modelNames.get(index)+".jpg")));
+                images.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/"+modelName+".jpg")));
             }
         } catch (IOException ex)
         {
@@ -48,7 +52,7 @@ public class DrawPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for(int index = 0; index < images.size(); index++){
+        for (int index  = 0; index < images.size(); index++) {
             g.drawImage(images.get(index), points.get(index).x, points.get(index).y, null); // see javadoc for more info on the parameters
         }
     }

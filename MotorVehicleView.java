@@ -43,7 +43,7 @@ public class MotorVehicleView extends JFrame{
     // Constructor
     public MotorVehicleView(String framename, MotorVehicleController cc, ArrayList<String> modelNames){
         this.carC = cc;
-        this.drawPanel = new DrawPanel(X, Y-240, carC.cars, modelNames);
+        //this.drawPanel = new DrawPanel(X, Y-240, carC.cars, modelNames);
         initComponents(framename);
     }
 

@@ -12,6 +12,8 @@ import java.util.ArrayList;
 public class MotorVehicleController {
     // member fields:
 
+    MotorVehicleModel model;
+
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;
     // The timer is started with an listener (see below) that executes the statements
@@ -27,6 +29,10 @@ public class MotorVehicleController {
     //Scania scania;
 
     //methods:
+
+    public MotorVehicleController(MotorVehicleModel model){
+        this.model = model;
+    }
 
     public static void MotorVehicleController(String[] args) {
         // Instance of this class
@@ -75,13 +81,13 @@ public class MotorVehicleController {
     // Calls the gas method for each car once
     void gas(int amount) {
         double gas = ((double) amount) / 100;
-        for (MotorVehicle car : cars) {
+        for (MotorVehicle car : model.vehicles) {
             car.gas(gas);
         }
     }
     void brake(int amount) {
         double brake = ((double) amount) / 100;
-        for (MotorVehicle car : cars){
+        for (MotorVehicle car : model.vehicles){
             car.brake(brake);
         }
 
@@ -114,12 +120,12 @@ public class MotorVehicleController {
             }
     }
     void startAllVehicles(){
-        for(MotorVehicle car : cars){
+        for(MotorVehicle car : model.vehicles){
             car.startEngine();
         }
     }
     void stopAllVehicles(){
-        for(MotorVehicle car: cars){
+        for(MotorVehicle car: model.vehicles){
             car.stopEngine();
         }
     }
