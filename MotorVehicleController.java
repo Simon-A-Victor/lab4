@@ -95,29 +95,31 @@ public class MotorVehicleController {
 
     void turboOn(){
         for (MotorVehicle car : model.vehicles){
-            //if(car instanceof Saab95){
+            if(car instanceof Saab95){
             ((Saab95) car).setTurboOn();
-            //}
+            }
         }
     }
 
     void turboOff(){
         for (MotorVehicle car : model.vehicles){
-            //if(car instanceof Saab95){
+            if(car instanceof Saab95){
             ((Saab95) car).setTurboOff();
-            //}
+            }
         }
     }
 
     void liftBed(){
         for (MotorVehicle car: model.vehicles){
+            if(car instanceof Scania){
             ((Scania) car).tiltPlatform(-70);
-        }
+        }}
     }
     void lowerBed(){
-            for (MotorVehicle car : model.vehicles){
+        for (MotorVehicle car : model.vehicles){
+            if(car instanceof Scania){
                 ((Scania) car).tiltPlatform(70);
-            }
+            }}
     }
     void startAllVehicles(){
         for(MotorVehicle car : model.vehicles){
