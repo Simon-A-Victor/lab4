@@ -160,16 +160,4 @@ abstract class MotorVehicle implements Movable, Loadable{
             decrementSpeed(amount);
         }
     }
-
-    public MotorVehicle(MotorVehicle motorVehicle){
-        this.nrDoors = motorVehicle.getNrDoors();
-        this.color = motorVehicle.getColor();
-        this.modelName = motorVehicle.getModelName();
-        this.x = motorVehicle.getXPosition();
-        this.y = motorVehicle.getYPosition();
-        this.size = motorVehicle.getSize();
-        this.enginePower = motorVehicle.getEnginePower();
-        this.active = motorVehicle.active;
-        this.setDirection(motorVehicle.getDirection());
-    }
 }
