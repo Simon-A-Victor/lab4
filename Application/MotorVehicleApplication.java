@@ -11,14 +11,14 @@ public class MotorVehicleApplication {
         ArrayList<MotorVehicle> vehicles = createBaseVehicles();
         MotorVehicleModel model = createModel(vehicles);
 
-        MotorVehicleApplicationWindow window = createMotorVehicleApplicationWindow();
+
 
         MotorVehicleController controller = createMotorVehicleController(model);
 
         MotorVehicleWidgets widgets = createMotorVehicleWidgets(controller, model);
 
         DrawPanel view = createDrawPanel(vehicles, model);
-
+        MotorVehicleApplicationWindow window = createMotorVehicleApplicationWindow();
         addToWindow(window, view, widgets);
     }
 
