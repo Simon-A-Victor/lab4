@@ -9,13 +9,15 @@ public class Scania extends PlatformVehicle {
     }
 
     public void tiltPlatform(double degrees) {
-        if (checkIfMaxReached(degrees)){
-            setPlatformAngle(70);
-        } else if (checkIfMinReached(degrees)) {
-            setPlatformAngle(0);
-        }
-        else {
-            setPlatformAngle(getPlatformAngle() + degrees);
+        if (getCurrentSpeed() == 0.0 ){
+            if (checkIfMaxReached(degrees)){
+                setPlatformAngle(70);
+            } else if (checkIfMinReached(degrees)) {
+                setPlatformAngle(0.0);
+            }
+            else {
+                setPlatformAngle(getPlatformAngle() + degrees);
+            }
         }
     }
 

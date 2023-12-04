@@ -24,4 +24,11 @@ abstract class PlatformVehicle extends MotorVehicle {
     protected boolean platformIsUp() {
         return getPlatformAngle() == 0.0;
     }
+
+    @Override
+    public void move(){
+        if (platformIsUp()){
+            super.move();
+        }
+    }
 }
