@@ -37,6 +37,11 @@ public class DrawPanel extends JPanel implements MotorVehiclePositionObserver {
         this.setBackground(Color.green);
         this.images = new ArrayList<BufferedImage>();
         this.points = new ArrayList<Point>();
+
+        addVehiclesToArrays(modelNames);
+    }
+
+    private void addVehiclesToArrays(ArrayList<String> modelNames) {
         // Print an error message in case file is not found with a try/catch block
         try {
             for (String modelName : modelNames){
