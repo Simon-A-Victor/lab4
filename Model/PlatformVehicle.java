@@ -16,7 +16,7 @@ abstract class PlatformVehicle extends MotorVehicle {
     }
 
     protected void setPlatformAngle(double degrees) {
-        if (getPlatformAngle() == 0){
+        if (isStationary()){
             platformAngle = degrees;
         }
     }
@@ -29,6 +29,13 @@ abstract class PlatformVehicle extends MotorVehicle {
     public void move(){
         if (platformIsUp()){
             super.move();
+        }
+    }
+
+    @Override
+    public void gas(double amount){
+        if (platformIsUp()){
+            super.gas(amount);
         }
     }
 }
