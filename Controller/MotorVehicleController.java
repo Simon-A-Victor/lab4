@@ -73,4 +73,12 @@ public class MotorVehicleController {
             car.stopEngine();
         }
     }
+
+    void addCar(){
+        model.vehicles.add(MotorVehicleFactory.createRandomVehicle());
+    }
+
+    void removeCar(){
+        model.vehicles.remove(model.vehicles.size()-1);
+    }
 }

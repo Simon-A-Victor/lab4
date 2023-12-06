@@ -26,12 +26,12 @@ public class MotorVehicleModel {
         this.timer.start();
     }
 
-    private int worldSizeX = 800;
+    private static int worldSizeX = 800;
 
-    private int worldSizeY = 560;
+    private static int worldSizeY = 400;
 
-    public int getWorldSizeX(){return worldSizeX;}
-    public int getWorldSizeY(){return worldSizeY;}
+    public static int getWorldSizeX(){return worldSizeX;}
+    public static int getWorldSizeY(){return worldSizeY;}
 
 
 

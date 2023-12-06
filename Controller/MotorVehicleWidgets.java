@@ -24,7 +24,8 @@ public class MotorVehicleWidgets extends JPanel {
     JButton turboOffButton = new JButton("Saab Turbo off");
     JButton liftBedButton = new JButton("Scania Lift Bed");
     JButton lowerBedButton = new JButton("Lower Lift Bed");
-
+    JButton addCar = new JButton("Add Car");
+    JButton removeCar = new JButton("Remove Car");
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
 
@@ -116,6 +117,20 @@ public class MotorVehicleWidgets extends JPanel {
                 carC.stopAllVehicles();
             }
         });
+
+        addCar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carC.addCar();
+            }
+        });
+
+        removeCar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carC.removeCar();
+            }
+        });
     }
 
     private void InitStartStopButtons(int X) {
@@ -134,16 +149,18 @@ public class MotorVehicleWidgets extends JPanel {
     }
 
     private void InitControlPanel(int X) {
-        controlPanel.setLayout(new GridLayout(2,4));
+        controlPanel.setLayout(new GridLayout(2,5));
         controlPanel.add(gasButton, 0);
         controlPanel.add(turboOnButton, 1);
         controlPanel.add(liftBedButton, 2);
         controlPanel.add(brakeButton, 3);
         controlPanel.add(turboOffButton, 4);
         controlPanel.add(lowerBedButton, 5);
+        controlPanel.add(addCar, 6);
+        controlPanel.add(removeCar, 7);
         controlPanel.setPreferredSize(new Dimension((X /2)+4, 200));
         this.add(controlPanel);
-    }
+}
 
     private void InitGasPanel() {
         gasPanel.setLayout(new BorderLayout());
