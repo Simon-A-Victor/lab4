@@ -1,12 +1,13 @@
 package Model;
 
 public class PlatformDownState extends PlatformState{
-    public PlatformDownState(MotorVehicle vehicle) {
+    public PlatformDownState(PlatformVehicle vehicle) {
         super(vehicle);
     }
 
     @Override
-    public boolean allowMove() {
-        return false;
-    }
+    public void onMove() {}
+
+    @Override
+    public void onGas(double amount) {}
 }

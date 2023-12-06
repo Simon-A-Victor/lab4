@@ -4,12 +4,17 @@ import java.security.KeyStore;
 
 public class PlatformUpState extends PlatformState{
 
-    public PlatformUpState(MotorVehicle vehicle) {
+    public PlatformUpState(PlatformVehicle vehicle) {
         super(vehicle);
     }
 
     @Override
-    public boolean allowMove() {
-        return true;
+    public void onMove() {
+        vehicle.moveAsSuper();
+    }
+
+    @Override
+    public void onGas(double amount) {
+        vehicle.gasAsSuper(amount);
     }
 }

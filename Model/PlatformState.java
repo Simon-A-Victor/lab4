@@ -1,10 +1,12 @@
 package Model;
 
 public abstract class PlatformState {
-    MotorVehicle vehicle;
-    public PlatformState(MotorVehicle vehicle){
+    PlatformVehicle vehicle;
+    public PlatformState(PlatformVehicle vehicle){
         this.vehicle = vehicle;
     }
 
-    public abstract boolean allowMove();
+    public abstract void onMove();
+
+    public abstract void onGas(double amount);
 }

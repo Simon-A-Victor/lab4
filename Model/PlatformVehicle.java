@@ -31,14 +31,19 @@ abstract class PlatformVehicle extends MotorVehicle {
 
     @Override
     public void move(){
-        if (platformState.allowMove()){
-            super.move();
-        }
+        platformState.onMove();
     }
+
+    public void moveAsSuper(){
+        super.move();
+    }
+
     @Override
     public void gas(double amount) {
-       if (platformState.allowMove()) {
-           super.gas(amount);
-       }
+        platformState.onGas(amount);
+    }
+
+    public void gasAsSuper(double amount){
+        super.gas(amount);
     }
 }
