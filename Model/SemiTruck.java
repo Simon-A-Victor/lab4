@@ -88,18 +88,12 @@ public class SemiTruck extends MotorVehicle {
     @Override
     public void turnLeft() {
         super.turnLeft();
-
-        if (isActive()){
-            this.alignContents();
-        }
+        this.alignContents();
     }
     @Override
     public void turnRight() {
         super.turnRight();
-
-        if (isActive()){
             this.alignContents();
-        }
     }
 
     @Override
@@ -110,8 +104,6 @@ public class SemiTruck extends MotorVehicle {
     @Override
     public void move() {
         super.move();
-        if (this.isActive()){
-            this.alignContents();
-        }
+        this.alignContents();
     }
 }

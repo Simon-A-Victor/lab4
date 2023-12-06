@@ -1,4 +1,6 @@
-package Model;
+package Model.PlatformStates;
+
+import Model.PlatformVehicle;
 
 public class PlatformDownState extends PlatformState{
     public PlatformDownState(PlatformVehicle vehicle) {

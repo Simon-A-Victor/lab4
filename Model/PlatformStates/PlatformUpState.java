@@ -1,6 +1,6 @@
-package Model;
+package Model.PlatformStates;
 
-import java.security.KeyStore;
+import Model.PlatformVehicle;
 
 public class PlatformUpState extends PlatformState{
 

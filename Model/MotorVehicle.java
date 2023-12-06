@@ -1,5 +1,9 @@
 package Model;
 
+import Model.ActivationStates.*;
+import Model.MovementStates.*;
+
+
 import java.awt.*;
 
 public abstract class MotorVehicle implements Movable, Loadable {
@@ -13,6 +17,7 @@ public abstract class MotorVehicle implements Movable, Loadable {
     private double y;
     private final int size;
     ActivationState activationState;
+    MovementState movementState;
 
     private final double enginePower; // Engine power of the car
     public MotorVehicle(int nrDoors, Color color, String modelName, double x, double y, int size, double enginePower){
@@ -24,6 +29,7 @@ public abstract class MotorVehicle implements Movable, Loadable {
         this.size = size;
         this.enginePower = enginePower;
         this.setActive();
+        this.setMovementStateFalse();
         this.setDirection(Directions.EAST);
     }
 
@@ -46,11 +52,12 @@ public abstract class MotorVehicle implements Movable, Loadable {
     }
     public void stopEngine(){
         this.setCurrentSpeed(0.0);
+        setMovementStateFalse();
     }
     public void startEngine(){
-        this.setActive();
-        this.setCurrentSpeed(0.1);
-
+        setActive();
+        setCurrentSpeed(0.1);
+        setMovementStateTrue();
     }
     public void setColor(Color clr){
         color = clr;
@@ -59,11 +66,17 @@ public abstract class MotorVehicle implements Movable, Loadable {
     abstract double speedFactor();
 
 
-    public ActivationState setActive() {return
-        new ActiveState();
+    public void setActive() {
+        activationState = new ActiveState(this);
+    }
+    public void setInactive(){
+        activationState =  new InactiveState(this);
     }
 
-    protected void incrementSpeed(double amount) {
+    public void setMovementStateTrue(){movementState = new MovementTrueState(this);}
+    public void setMovementStateFalse(){movementState = new MovementFalseState(this);}
+
+    public void incrementSpeed(double amount) {
         setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower()));
     }
 
@@ -76,9 +89,7 @@ public abstract class MotorVehicle implements Movable, Loadable {
         return speed == 0;
     }
 
-    public ActivationState setInactive(){
-            return inActiveState;
-        }
+
 
     @Override
     public void move() {
@@ -90,9 +101,7 @@ public abstract class MotorVehicle implements Movable, Loadable {
     }
     @Override
     public void turnRight() {
-        if (this.isActive()) {
-            this.setDirection(Directions.values()[(direction.ordinal()+1)%4]);
-        }
+        activationState.onTurnRight();
     }
     @Override
     public double getXPosition() {
@@ -129,12 +138,16 @@ public abstract class MotorVehicle implements Movable, Loadable {
     @Override
     public void setCurrentSpeed(double speed){
         currentSpeed = speed;
+        if (currentSpeed > 0){
+            setMovementStateTrue();
+        }
+        else {
+            setMovementStateFalse();
+        }
     }
 
     public void gas(double amount){
-        if (0 <= amount && amount <= 1){
-            this.incrementSpeed(amount);
-        }
+        activationState.onGas(amount);
     }
     public void brake(double amount){
         if (0 <= amount && amount <= 1){

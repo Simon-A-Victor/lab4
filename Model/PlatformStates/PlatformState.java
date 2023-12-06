@@ -1,4 +1,6 @@
-package Model;
+package Model.PlatformStates;
+
+import Model.PlatformVehicle;
 
 public abstract class PlatformState {
     PlatformVehicle vehicle;

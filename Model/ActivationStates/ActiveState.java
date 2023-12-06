@@ -1,4 +1,7 @@
-package Model;
+package Model.ActivationStates;
+
+import Model.Directions;
+import Model.MotorVehicle;
 
 public class ActiveState extends ActivationState{
     public ActiveState(MotorVehicle vehicle) {
@@ -23,19 +26,21 @@ public class ActiveState extends ActivationState{
                 break;
         }
     }
-    }
+
     @Override
     public void onTurnLeft(){
             vehicle.setDirection(Directions.values()[(vehicle.getDirection().ordinal()+3)%4]);
         }
-    }
+
     @Override
-    public void onTurnRight(){
+    public void onTurnRight(){ vehicle.setDirection(Directions.values()[(vehicle.getDirection().ordinal()+1)%4]);
 
     }
     @Override
-    public void onGas(){
-
+    public void onGas(double amount){
+        if (0 <= amount && amount <= 1){
+            vehicle.incrementSpeed(amount);
+        }
     }
 
 }

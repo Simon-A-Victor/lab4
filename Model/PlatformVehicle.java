@@ -1,9 +1,13 @@
 package Model;
 
+import Model.PlatformStates.PlatformDownState;
+import Model.PlatformStates.PlatformState;
+import Model.PlatformStates.PlatformUpState;
+
 import java.awt.*;
 
-abstract class PlatformVehicle extends MotorVehicle {
-    PlatformState platformState;
+public abstract class PlatformVehicle extends MotorVehicle {
+     public PlatformState platformState;
     private double platformAngle = 0.0;
 
     public PlatformVehicle(int nrDoors, double enginePower, Color color, String modelName, double x, double y, int size) {
@@ -11,21 +15,21 @@ abstract class PlatformVehicle extends MotorVehicle {
         this.platformState = new PlatformUpState(this);
     }
 
-    protected double getPlatformAngle() {
+    public double getPlatformAngle() {
         return platformAngle;
     }
 
-    protected void setPlatformAngle(double degrees) {
+    public void setPlatformAngle(double degrees) {
         if (isStationary()){
             platformAngle = degrees;
         }
     }
 
-    protected PlatformState platformDown(){
+    public PlatformState platformDown(){
         return new PlatformDownState(this);
     }
 
-    protected PlatformState platformUp(){
+    public PlatformState platformUp(){
         return new PlatformUpState(this);
     }
 
