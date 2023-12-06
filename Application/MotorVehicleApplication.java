@@ -23,9 +23,9 @@ public class MotorVehicleApplication {
 
     private static ArrayList<MotorVehicle> createBaseVehicles() {
         ArrayList<MotorVehicle> vehicles = new ArrayList<MotorVehicle>();
-        vehicles.add(new Volvo240(0,0));
-        vehicles.add(new Saab95(0,100));
-        vehicles.add(new Scania(0,200));
+        vehicles.add(MotorVehicleFactory.createVolvo240(0,0));
+        vehicles.add(MotorVehicleFactory.createSaab95(0,100));
+        vehicles.add(MotorVehicleFactory.createScania(0,200));
         return vehicles;
     }
     private static MotorVehicleModel createModel(ArrayList<MotorVehicle> vehicles) {

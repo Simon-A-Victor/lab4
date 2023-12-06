@@ -1,9 +1,6 @@
 package Controller;
 
-import Model.MotorVehicleModel;
-import Model.MotorVehicle;
-import Model.Saab95;
-import Model.Scania;
+import Model.*;
 
 /*
 * This class represents the Controller part in the MVC pattern.
