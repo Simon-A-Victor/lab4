@@ -12,16 +12,19 @@ public class Scania extends PlatformVehicle {
 
         if (checkIfMaxReached(degrees)){
             setPlatformAngle(70);
+            platformState = platformUp();
         } else if (checkIfMinReached(degrees)) {
             setPlatformAngle(0.0);
+            platformState = platformUp();
         }
         else {
             setPlatformAngle(getPlatformAngle() + degrees);
+            platformState = platformDown();
         }
     }
 
     private boolean checkIfMaxReached(double degrees){return getPlatformAngle() + degrees > 70;}
-    private boolean checkIfMinReached(double degrees){return getPlatformAngle() + degrees < 0;}
+    private boolean checkIfMinReached(double degrees){return getPlatformAngle() + degrees <= 0;}
 
     protected double speedFactor() {
         return 1;

@@ -3,10 +3,12 @@ package Model;
 import java.awt.*;
 
 abstract class PlatformVehicle extends MotorVehicle {
+    PlatformState platformState;
     private double platformAngle = 0.0;
 
     public PlatformVehicle(int nrDoors, double enginePower, Color color, String modelName, double x, double y, int size) {
         super(nrDoors,color, modelName, x, y, size, enginePower);
+        this.platformState = new PlatformUpState(this);
     }
 
     protected double getPlatformAngle() {
@@ -19,21 +21,24 @@ abstract class PlatformVehicle extends MotorVehicle {
         }
     }
 
-    protected boolean platformIsUp() {
-        return getPlatformAngle() == 0.0;
+    protected PlatformState platformDown(){
+        return new PlatformDownState(this);
+    }
+
+    protected PlatformState platformUp(){
+        return new PlatformUpState(this);
     }
 
     @Override
     public void move(){
-        if (platformIsUp()){
+        if (platformState.allowMove()){
             super.move();
         }
     }
-
     @Override
-    public void gas(double amount){
-        if (platformIsUp()){
-            super.gas(amount);
-        }
+    public void gas(double amount) {
+       if (platformState.allowMove()) {
+           super.gas(amount);
+       }
     }
 }
