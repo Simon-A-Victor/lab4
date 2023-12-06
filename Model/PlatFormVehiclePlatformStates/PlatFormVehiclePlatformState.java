@@ -1,10 +1,10 @@
-package Model.PlatformStates;
+package Model.PlatFormVehiclePlatformStates;
 
 import Model.PlatformVehicle;
 
-public abstract class PlatformState {
+public abstract class PlatFormVehiclePlatformState {
     PlatformVehicle vehicle;
-    public PlatformState(PlatformVehicle vehicle){
+    public PlatFormVehiclePlatformState(PlatformVehicle vehicle){
         this.vehicle = vehicle;
     }
 

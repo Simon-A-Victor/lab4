@@ -1,18 +1,18 @@
 package Model;
 
-import Model.PlatformStates.PlatformDownState;
-import Model.PlatformStates.PlatformState;
-import Model.PlatformStates.PlatformUpState;
+import Model.PlatFormVehiclePlatformStates.PlatFormVehiclePlatformDownState;
+import Model.PlatFormVehiclePlatformStates.PlatFormVehiclePlatformState;
+import Model.PlatFormVehiclePlatformStates.PlatFormVehiclePlatformUpState;
 
 import java.awt.*;
 
 public abstract class PlatformVehicle extends MotorVehicle {
-     public PlatformState platformState;
+     public PlatFormVehiclePlatformState platFormVehiclePlatformState;
     private double platformAngle = 0.0;
 
     public PlatformVehicle(int nrDoors, double enginePower, Color color, String modelName, double x, double y, int size) {
         super(nrDoors,color, modelName, x, y, size, enginePower);
-        this.platformState = new PlatformUpState(this);
+        this.platFormVehiclePlatformState = new PlatFormVehiclePlatformUpState(this);
     }
 
     public double getPlatformAngle() {
@@ -25,18 +25,18 @@ public abstract class PlatformVehicle extends MotorVehicle {
         }
     }
 
-    public PlatformState platformDown(){
-        return new PlatformDownState(this);
+    public PlatFormVehiclePlatformState platformDown(){
+        return new PlatFormVehiclePlatformDownState(this);
     }
 
-    public PlatformState platformUp(){
-        return new PlatformUpState(this);
+    public PlatFormVehiclePlatformState platformUp(){
+        return new PlatFormVehiclePlatformUpState(this);
     }
 
 
     @Override
     public void move(){
-        platformState.onMove();
+        platFormVehiclePlatformState.onMove();
     }
 
     public void moveAsSuper(){
@@ -45,7 +45,7 @@ public abstract class PlatformVehicle extends MotorVehicle {
 
     @Override
     public void gas(double amount) {
-        platformState.onGas(amount);
+        platFormVehiclePlatformState.onGas(amount);
     }
 
     public void gasAsSuper(double amount){

@@ -1,10 +1,10 @@
-package Model.PlatformStates;
+package Model.PlatFormVehiclePlatformStates;
 
 import Model.PlatformVehicle;
 
-public class PlatformUpState extends PlatformState{
+public class PlatFormVehiclePlatformUpState extends PlatFormVehiclePlatformState {
 
-    public PlatformUpState(PlatformVehicle vehicle) {
+    public PlatFormVehiclePlatformUpState(PlatformVehicle vehicle) {
         super(vehicle);
     }
 
