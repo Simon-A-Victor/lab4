@@ -28,7 +28,7 @@ public abstract class MotorVehicle implements Movable, Loadable {
         this.y = y;
         this.size = size;
         this.enginePower = enginePower;
-        this.setActive();
+        this.activationState = new ActiveState(this);
         this.movementState = new MovementFalseState(this);
         this.setDirection(Directions.EAST);
     }
@@ -67,10 +67,10 @@ public abstract class MotorVehicle implements Movable, Loadable {
 
 
     public void setActive() {
-        activationState = new ActiveState(this);
+        activationState.setActive();
     }
     public void setInactive(){
-        activationState =  new InactiveState(this);
+        activationState.setInactive();
     }
 
     public void setMovementStateTrue(){movementState.setTrue();}

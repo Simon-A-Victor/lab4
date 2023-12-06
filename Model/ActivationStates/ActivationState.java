@@ -13,4 +13,11 @@ public abstract class ActivationState {
     public abstract void onTurnRight();
     public abstract void onGas(double amount);
 
+    public ActivationState setActive(){
+        return new ActiveState(vehicle);
+    }
+    public ActivationState setInactive(){
+        return new ActiveState(vehicle);
+    }
+
 }
