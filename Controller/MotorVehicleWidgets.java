@@ -153,10 +153,10 @@ public class MotorVehicleWidgets extends JPanel {
         controlPanel.add(gasButton, 0);
         controlPanel.add(turboOnButton, 1);
         controlPanel.add(liftBedButton, 2);
-        controlPanel.add(brakeButton, 3);
-        controlPanel.add(turboOffButton, 4);
-        controlPanel.add(lowerBedButton, 5);
-        controlPanel.add(addCar, 6);
+        controlPanel.add(brakeButton, 4);
+        controlPanel.add(turboOffButton, 5);
+        controlPanel.add(lowerBedButton, 6);
+        controlPanel.add(addCar, 3);
         controlPanel.add(removeCar, 7);
         controlPanel.setPreferredSize(new Dimension((X /2)+4, 200));
         this.add(controlPanel);
