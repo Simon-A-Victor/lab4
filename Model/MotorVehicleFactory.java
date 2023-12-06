@@ -40,20 +40,24 @@ public class MotorVehicleFactory {
 
         int n = rand.nextInt(4);
 
-        double x = rand.nextDouble(Model.MotorVehicleModel.getWorldSizeX()+1);
-        double y = rand.nextDouble(Model.MotorVehicleModel.getWorldSizeY()+1);
+        double x = rand.nextDouble(Model.MotorVehicleModel.getWorldSizeX()-100);
+        double y = rand.nextDouble(Model.MotorVehicleModel.getWorldSizeY()-60);
 
         MotorVehicle newVehicle;
 
         switch(n){
             case 0:
                 newVehicle = createVolvo240(x, y);
+                break;
             case 1:
                 newVehicle = createSaab95(x, y);
+                break;
             case 2:
                 newVehicle = createScania(x, y);
-            case 3:
-                newVehicle = createSemiTruck(x, y);
+                break;
+            //case 3:
+                //newVehicle = createSemiTruck(x, y);
+                //break;
             default:
                 newVehicle = createVolvo240(x, y);
         }

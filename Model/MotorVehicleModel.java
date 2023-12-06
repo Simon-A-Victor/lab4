@@ -24,7 +24,7 @@ public class MotorVehicleModel {
 
     private static int worldSizeX = 800;
 
-    private static int worldSizeY = 400;
+    private static int worldSizeY = 560;
 
     public static int getWorldSizeX(){return worldSizeX;}
     public static int getWorldSizeY(){return worldSizeY;}
