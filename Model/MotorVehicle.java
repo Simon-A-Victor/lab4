@@ -11,7 +11,7 @@ public abstract class MotorVehicle implements Movable, Loadable {
     private double x;
     private double y;
     private final int size;
-    private boolean active;
+    ActivationState activationState;
 
     private final double enginePower; // Engine power of the car
     public MotorVehicle(int nrDoors, Color color, String modelName, double x, double y, int size, double enginePower){
@@ -57,12 +57,9 @@ public abstract class MotorVehicle implements Movable, Loadable {
 
     abstract double speedFactor();
 
-    public boolean isActive() {
-        return active;
-    }
 
-    public void setActive() {
-        this.active = true;
+    public ActivationState setActive() {return
+        new ActiveState();
     }
 
     protected void incrementSpeed(double amount) {
@@ -78,36 +75,17 @@ public abstract class MotorVehicle implements Movable, Loadable {
         return speed == 0;
     }
 
-    public void setInactive(){
-        if (isStationary()){
-            this.setCurrentSpeed(0.0);
-            this.active = false;
+    public ActivationState setInactive(){
+            return inActiveState;
         }
-    }
+
     @Override
     public void move() {
-        if (this.isActive()){
-            switch (this.getDirection()){
-                case NORTH:
-                    this.setYPosition(this.getYPosition() - this.getCurrentSpeed());
-                    break;
-                case WEST:
-                    this.setXPosition(this.getXPosition() - this.getCurrentSpeed());
-                    break;
-                case SOUTH:
-                    this.setYPosition(this.getYPosition() + this.getCurrentSpeed());
-                    break;
-                case EAST:
-                    this.setXPosition(this.getXPosition() + this.getCurrentSpeed());
-                    break;
-            }
-        }
+       activationState.onMove();
     }
     @Override
     public void turnLeft() {
-        if (this.isActive()) {
-            this.setDirection(Directions.values()[(direction.ordinal()+3)%4]);
-        }
+        activationState.onTurnLeft();
     }
     @Override
     public void turnRight() {
