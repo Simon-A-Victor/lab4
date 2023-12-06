@@ -1,5 +1,7 @@
 package Model;
 
+import Model.SemiTruckMovementStates.SemiTruckMovementFalseState;
+import Model.SemiTruckMovementStates.SemiTruckMovementState;
 import Model.SemiTruckPlatformStates.SemiTruckPlatformState;
 import Model.SemiTruckPlatformStates.SemiTruckPlatformStateUp;
 
@@ -14,6 +16,8 @@ public class SemiTruck extends MotorVehicle {
 
     public SemiTruckPlatformState platformState;
 
+    public SemiTruckMovementState movementState;
+
 
     public SemiTruck(double x, double y){
         super(2, Color.black,"Semi69", x, y, 15, 5);
@@ -21,14 +25,15 @@ public class SemiTruck extends MotorVehicle {
         this.maxSize = 5;
         this.capacity = 4;
         this.platformState = new SemiTruckPlatformStateUp(this);
+        this.movementState = new SemiTruckMovementFalseState(this);
     }
 
     public void setPlatformUp() {
-        platformState.setStateUp();
+        movementState.onSetPlatformUp();
     }
 
     public void setPlatformDown(){
-        platformState.setStateDown();
+        movementState.onSetPlatformDown();
     }
 
     public int getMaxSize(){return maxSize;}
@@ -100,8 +105,17 @@ public class SemiTruck extends MotorVehicle {
         platformState.onMove();
     }
 
+    @Override
+    public void gas(double amount){
+        platformState.onGas(amount);
+    }
+
     public void moveAsSuper(){
         super.move();
         this.alignContents();
+    }
+
+    public void gasAsSuper(double amount){
+        super.gas(amount);
     }
 }

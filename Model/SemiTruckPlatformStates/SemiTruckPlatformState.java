@@ -13,6 +13,8 @@ public abstract class SemiTruckPlatformState {
 
     public abstract void onMove();
 
+    public abstract void onGas(double amount);
+
     public abstract void onLoad(Car other);
 
     public abstract void onUnload(Car other);

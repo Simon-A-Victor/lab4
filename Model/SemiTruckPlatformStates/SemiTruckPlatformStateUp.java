@@ -10,7 +10,12 @@ public class SemiTruckPlatformStateUp extends SemiTruckPlatformState{
 
     @Override
     public void onMove() {
+        truck.moveAsSuper();
+    }
 
+    @Override
+    public void onGas(double amount) {
+        truck.gasAsSuper(amount);
     }
 
     @Override
