@@ -62,12 +62,12 @@ public class SemiTruck extends MotorVehicle {
         }
     }
 
-    private boolean checkIfLastinArray(Car other){
+    private boolean checkIfLastInArray(Car other){
         return loaded.get(loaded.size() - 1) == other;
     }
 
     private boolean checkValidUnload(Car other){
-        return checkIfLastinArray(other) && this.platformIsDown();
+        return checkIfLastInArray(other) && this.platformIsDown();
     }
 
     public void unload(Car other) {
