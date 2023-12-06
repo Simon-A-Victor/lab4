@@ -13,7 +13,7 @@ import javax.swing.*;
 
 public class DrawPanel extends JPanel implements MotorVehiclePositionObserver {
 
-    private ArrayList<ImageAndPositionInformation> imagesAndPositions;
+    private final ArrayList<ImageAndPositionInformation> imagesAndPositions;
 
     @Override
     public void actOnMotorVehiclePositionUpdate(int x, int y, String modelName){
@@ -38,15 +38,19 @@ public class DrawPanel extends JPanel implements MotorVehiclePositionObserver {
         Point position;
 
         public ImageAndPositionInformation(String modelName, Point position){
+            tryToAddImage(modelName);
+            this.position = position;
+        }
+
+        private void tryToAddImage(String modelName) {
             // Print an error message in case file is not found with a try/catch block
             try {
                 //points.add(new Point());
-                this.modelImage = (ImageIO.read(DrawPanel.class.getResourceAsStream("pics/"+modelName+".jpg")));
+                this.modelImage = (ImageIO.read(DrawPanel.class.getResourceAsStream("pics/"+ modelName +".jpg")));
             } catch (IOException ex)
             {
                 ex.printStackTrace();
             }
-            this.position = position;
         }
     }
 
