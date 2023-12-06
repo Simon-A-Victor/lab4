@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MotorVehicleWidgets extends JPanel {
-    private final MotorVehicleController carC;
+    private final MotorVehicleController controller;
     JPanel controlPanel = new JPanel();
 
     JPanel gasPanel = new JPanel();
@@ -28,7 +28,7 @@ public class MotorVehicleWidgets extends JPanel {
     JButton stopButton = new JButton("Stop all cars");
 
     public MotorVehicleWidgets(MotorVehicleController cc, int X, int Y){
-        this.carC = cc;
+        this.controller = cc;
         initComponents(X, Y);
     }
 
@@ -63,13 +63,13 @@ public class MotorVehicleWidgets extends JPanel {
         gasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.gas(gasAmount);
+                controller.gas(gasAmount);
             }
         });
 
         brakeButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { carC.brake(gasAmount);
+            public void actionPerformed(ActionEvent e) { controller.brake(gasAmount);
 
             }
         });
@@ -77,56 +77,56 @@ public class MotorVehicleWidgets extends JPanel {
         turboOnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.turboOn();
+                controller.turboOn();
             }
         });
 
         turboOffButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.turboOff();
+                controller.turboOff();
             }
         });
 
         liftBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.liftBed();
+                controller.liftBed();
             }
         });
 
         lowerBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.lowerBed();
+                controller.lowerBed();
             }
         });
 
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.startAllVehicles();
+                controller.startAllVehicles();
             }
         });
 
         stopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.stopAllVehicles();
+                controller.stopAllVehicles();
             }
         });
 
         addCar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.addVehicle();
+                controller.addVehicle();
             }
         });
 
         removeCar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.removeVehicle();
+                controller.removeVehicle();
             }
         });
     }
