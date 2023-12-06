@@ -1,7 +1,5 @@
 package Model;
 
-import Model.MotorVehicle;
-
 import java.awt.*;
 
 abstract class PlatformVehicle extends MotorVehicle {

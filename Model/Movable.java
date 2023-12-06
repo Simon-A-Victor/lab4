@@ -1,7 +1,5 @@
 package Model;
 
-import Model.Directions;
-
 public interface Movable {
     void move();
     void turnLeft();

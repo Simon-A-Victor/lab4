@@ -1,23 +1,21 @@
 package Model;
 
-import Model.MotorVehicle;
-
 import java.util.ArrayList;
 
 public class Workshop<V extends MotorVehicle>{
 
-    private double x;
-    private double y;
-    private int capacity;
-    private int maxSize;
-    private ArrayList<V> storage;
+    private final double x;
+    private final double y;
+    private final int capacity;
+    private final int maxSize;
+    private final ArrayList<V> storage;
 
     public Workshop(double x, double y, int capacity, int maxSize){
         this.x = x;
         this.y = y;
         this.maxSize = maxSize;
         this.capacity = capacity;
-        storage = new ArrayList<V>();
+        storage = new ArrayList<>();
     }
     private int getCapacity() {
         return capacity;

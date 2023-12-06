@@ -6,12 +6,6 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class MotorVehicleModel {
-    // Smart, here is all the logic which should keep track of all info relevant to the game.
-    // The delay (ms) corresponds to 20 updates a sec (hz)
-    private final int delay = 50;
-    // The timer is started with a listener (see below) that executes the statements
-    // each step between delays.
-    private Timer timer = new Timer(delay, new TimerListener());
 
     public ArrayList<MotorVehicle> vehicles;
 
@@ -19,15 +13,19 @@ public class MotorVehicleModel {
 
     public MotorVehicleModel(ArrayList<MotorVehicle> vehicles){
         this.vehicles = vehicles;
-        this.timer.start();
+        // The timer is started with a listener (see below) that executes the statements
+        // each step between delays.
+        // Smart, here is all the logic which should keep track of all info relevant to the game.
+        // The delay (ms) corresponds to 20 updates a sec (hz)
+        int delay = 50;
+        Timer timer = new Timer(delay, new TimerListener());
+        timer.start();
     }
 
-    private static int worldSizeX = 800;
-
-    private static int worldSizeY = 560;
-
-    public static int getWorldSizeX(){return worldSizeX;}
-    public static int getWorldSizeY(){return worldSizeY;}
+    public static int getWorldSizeX(){
+        return 800;}
+    public static int getWorldSizeY(){
+        return 560;}
 
     public void addVehicle(MotorVehicle vehicle){
         if (vehicles.size() < 10){
@@ -36,7 +34,7 @@ public class MotorVehicleModel {
     }
 
     public void removeVehicle(){
-        if (vehicles.size() > 0){
+        if (!vehicles.isEmpty()){
             vehicles.remove(vehicles.size()-1);
         }
     }

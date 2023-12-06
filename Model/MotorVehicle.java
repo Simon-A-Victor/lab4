@@ -1,21 +1,19 @@
 package Model;
 
-import Model.Directions;
-
 import java.awt.*;
 
 public abstract class MotorVehicle implements Movable, Loadable {
-    private int nrDoors;
+    private final int nrDoors;
     private double currentSpeed;
     private Color color;
-    private String modelName;
+    private final String modelName;
     private Directions direction;
     private double x;
     private double y;
-    private int size;
+    private final int size;
     private boolean active;
 
-    private double enginePower; // Engine power of the car
+    private final double enginePower; // Engine power of the car
     public MotorVehicle(int nrDoors, Color color, String modelName, double x, double y, int size, double enginePower){
         this.nrDoors = nrDoors;
         this.color = color;

@@ -1,22 +1,19 @@
 package Model;
 
-import Model.Car;
-import Model.MotorVehicle;
-
 import java.awt.*;
 import java.util.ArrayList;
 
 public class SemiTruck extends MotorVehicle {
 
-    private ArrayList<Car> loaded;
-    private int maxSize;
-    private int capacity;
+    private final ArrayList<Car> loaded;
+    private final int maxSize;
+    private final int capacity;
     private boolean platformUp;
 
 
     public SemiTruck(double x, double y){
         super(2, Color.black,"Semi69", x, y, 15, 5);
-        this.loaded  = new ArrayList<Car>();
+        this.loaded  = new ArrayList<>();
         this.maxSize = 5;
         this.capacity = 4;
         this.platformUp = true;
@@ -41,8 +38,8 @@ public class SemiTruck extends MotorVehicle {
         return !(this.loaded.isEmpty());
     }
 
-    public boolean platformIsUp(){
-        return platformUp;
+    public boolean platformIsDown(){
+        return !platformUp;
     }
     private boolean checkDistance(Car other){
         double XDiff = Math.abs(this.getXPosition() - other.getXPosition());
@@ -51,11 +48,11 @@ public class SemiTruck extends MotorVehicle {
         return (totDiff < 4);
     }
     private boolean checkCapacity(){
-        return this.loaded.size() < this.capacity;
+        return this.loaded.size() < this.getCapacity();
     }
 
     private boolean checkValidLoad(Car other){
-        return this.checkSize(other) && !this.platformIsUp() && this.checkDistance(other) && this.checkCapacity();
+        return this.checkSize(other) && this.platformIsDown() && this.checkDistance(other) && this.checkCapacity();
     }
 
     public void load(Car other) {
@@ -70,7 +67,7 @@ public class SemiTruck extends MotorVehicle {
     }
 
     private boolean checkValidUnload(Car other){
-        return checkIfLastinArray(other) && !this.platformIsUp();
+        return checkIfLastinArray(other) && this.platformIsDown();
     }
 
     public void unload(Car other) {

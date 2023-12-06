@@ -1,7 +1,5 @@
 package Model;
 
-import Model.Car;
-
 import java.awt.*;
 
 public class Volvo240 extends Car {
