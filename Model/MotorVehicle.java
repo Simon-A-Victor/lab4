@@ -3,6 +3,7 @@ package Model;
 import java.awt.*;
 
 public abstract class MotorVehicle implements Movable, Loadable {
+
     private final int nrDoors;
     private double currentSpeed;
     private Color color;

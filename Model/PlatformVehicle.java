@@ -29,6 +29,7 @@ abstract class PlatformVehicle extends MotorVehicle {
         return new PlatformUpState(this);
     }
 
+
     @Override
     public void move(){
         platformState.onMove();
