@@ -15,6 +15,7 @@ public class DrawPanel extends JPanel implements MotorVehiclePositionObserver {
 
     private ArrayList<ImageAndPositionInformation> imagesAndPositions;
 
+    @Override
     public void actOnMotorVehiclePositionUpdate(int x, int y, String modelName){
         imagesAndPositions.add(new ImageAndPositionInformation(modelName, new Point(x,y)));
     }
