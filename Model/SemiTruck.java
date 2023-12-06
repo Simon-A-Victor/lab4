@@ -1,14 +1,18 @@
 package Model;
 
+import Model.SemiTruckPlatformStates.SemiTruckPlatformState;
+import Model.SemiTruckPlatformStates.SemiTruckPlatformStateUp;
+
 import java.awt.*;
 import java.util.ArrayList;
 
 public class SemiTruck extends MotorVehicle {
 
-    private final ArrayList<Car> loaded;
+    public final ArrayList<Car> loaded;
     private final int maxSize;
     private final int capacity;
-    private boolean platformUp;
+
+    public SemiTruckPlatformState platformState;
 
 
     public SemiTruck(double x, double y){
@@ -16,15 +20,15 @@ public class SemiTruck extends MotorVehicle {
         this.loaded  = new ArrayList<>();
         this.maxSize = 5;
         this.capacity = 4;
-        this.platformUp = true;
+        this.platformState = new SemiTruckPlatformStateUp(this);
     }
 
     public void setPlatformUp() {
-        this.platformUp = true;
+        platformState.setStateUp();
     }
 
     public void setPlatformDown(){
-        this.platformUp = false;
+        platformState.setStateDown();
     }
 
     public int getMaxSize(){return maxSize;}
@@ -38,9 +42,6 @@ public class SemiTruck extends MotorVehicle {
         return !(this.loaded.isEmpty());
     }
 
-    public boolean platformIsDown(){
-        return !platformUp;
-    }
     private boolean checkDistance(Car other){
         double XDiff = Math.abs(this.getXPosition() - other.getXPosition());
         double YDiff = Math.abs(this.getYPosition() - other.getYPosition());
@@ -51,34 +52,27 @@ public class SemiTruck extends MotorVehicle {
         return this.loaded.size() < this.getCapacity();
     }
 
-    private boolean checkValidLoad(Car other){
-        return this.checkSize(other) && this.platformIsDown() && this.checkDistance(other) && this.checkCapacity();
+    public boolean checkValidLoad(Car other){
+        return this.checkSize(other) && this.checkDistance(other) && this.checkCapacity();
     }
 
     public void load(Car other) {
-        if (checkValidLoad(other)) {
-            loaded.add(other);
-            this.alignContents();
-        }
+        platformState.onLoad(other);
     }
 
     private boolean checkIfLastInArray(Car other){
         return loaded.get(loaded.size() - 1) == other;
     }
 
-    private boolean checkValidUnload(Car other){
-        return checkIfLastInArray(other) && this.platformIsDown();
+    public boolean checkValidUnload(Car other){
+        return checkIfLastInArray(other);
     }
 
     public void unload(Car other) {
-        if (checkValidUnload(other)){
-            loaded.remove(other);
-            other.setXPosition(other.getXPosition()+1);
-            other.setActive();
-        }
+        platformState.onUnload(other);
     }
 
-    private void alignContents(){
+    public void alignContents(){
         for(Car car : loaded){
             car.setXPosition(this.getXPosition());
             car.setYPosition(this.getYPosition());
@@ -103,6 +97,10 @@ public class SemiTruck extends MotorVehicle {
 
     @Override
     public void move() {
+        platformState.onMove();
+    }
+
+    public void moveAsSuper(){
         super.move();
         this.alignContents();
     }
