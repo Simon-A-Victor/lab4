@@ -13,16 +13,16 @@ public class MotorVehicleApplication {
 
         MotorVehicleController controller = createMotorVehicleController(model);
 
-        MotorVehicleWidgets widgets = createMotorVehicleWidgets(controller, model);
+        MotorVehicleWidgets widgets = createMotorVehicleWidgets(controller);
 
-        DrawPanel view = createDrawPanel(vehicles, model);
+        DrawPanel view = createDrawPanel(model);
 
         MotorVehicleApplicationWindow window = createMotorVehicleApplicationWindow();
         addToWindow(window, view, widgets);
     }
 
     private static ArrayList<MotorVehicle> createBaseVehicles() {
-        ArrayList<MotorVehicle> vehicles = new ArrayList<MotorVehicle>();
+        ArrayList<MotorVehicle> vehicles = new ArrayList<>();
         vehicles.add(MotorVehicleFactory.createVolvo240(0,0));
         vehicles.add(MotorVehicleFactory.createSaab95(0,100));
         vehicles.add(MotorVehicleFactory.createScania(0,200));
@@ -37,15 +37,11 @@ public class MotorVehicleApplication {
     private static MotorVehicleController createMotorVehicleController(MotorVehicleModel model) {
         return new MotorVehicleController(model);
     }
-    private static MotorVehicleWidgets createMotorVehicleWidgets(MotorVehicleController controller, MotorVehicleModel model) {
-        return new MotorVehicleWidgets(controller, model.getWorldSizeX(), model.getWorldSizeY()+240);
+    private static MotorVehicleWidgets createMotorVehicleWidgets(MotorVehicleController controller) {
+        return new MotorVehicleWidgets(controller, MotorVehicleModel.getWorldSizeX(), MotorVehicleModel.getWorldSizeY()+240);
     }
-    private static DrawPanel createDrawPanel(ArrayList<MotorVehicle> vehicles, MotorVehicleModel model) {
-        ArrayList<String> modelNames = new ArrayList<String>();
-        for ( MotorVehicle vehicle : vehicles) {
-            modelNames.add(vehicle.getModelName());
-        }
-        DrawPanel view = new DrawPanel(model.getWorldSizeX(), model.getWorldSizeY(),modelNames);
+    private static DrawPanel createDrawPanel(MotorVehicleModel model) {
+        DrawPanel view = new DrawPanel(MotorVehicleModel.getWorldSizeX(), MotorVehicleModel.getWorldSizeY());
         model.addObserver(view);
         return view;
     }

@@ -17,7 +17,7 @@ public class DrawPanel extends JPanel implements MotorVehiclePositionObserver {
 
     @Override
     public void actOnMotorVehiclePositionUpdate(int x, int y, String modelName){
-        imagesAndPositions.add(new ImageAndPositionInformation(modelName, new Point(x,y)));
+        imagesAndPositions.add(new ImageAndPositionInformation(modelName, new Point(x, y)));
     }
 
     @Override
@@ -26,14 +26,14 @@ public class DrawPanel extends JPanel implements MotorVehiclePositionObserver {
     }
 
     // Initializes the panel and reads the images
-    public DrawPanel(int x, int y, ArrayList<String> modelNames) {
+    public DrawPanel(int x, int y) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
-        this.imagesAndPositions = new ArrayList<ImageAndPositionInformation>();
+        this.imagesAndPositions = new ArrayList<>();
     }
 
-    private class ImageAndPositionInformation{
+    private static class ImageAndPositionInformation{
         BufferedImage modelImage;
         Point position;
 
