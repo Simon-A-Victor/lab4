@@ -19,7 +19,7 @@ public class ScaniaMovementFalseState extends ScaniaMovementState{
         }
         else {
             vehicle.setPlatformAngle(vehicle.getPlatformAngle()+degrees);
-            vehicle.platformState = vehicle.platformUp();
+            vehicle.platformState = vehicle.platformDown();
         }
     }
 }
