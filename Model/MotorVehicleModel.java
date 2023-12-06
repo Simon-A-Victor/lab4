@@ -29,7 +29,17 @@ public class MotorVehicleModel {
     public static int getWorldSizeX(){return worldSizeX;}
     public static int getWorldSizeY(){return worldSizeY;}
 
+    public void addVehicle(MotorVehicle vehicle){
+        if (vehicles.size() < 10){
+            vehicles.add(vehicle);
+        }
+    }
 
+    public void removeVehicle(){
+        if (vehicles.size() > 0){
+            vehicles.remove(vehicles.size()-1);
+        }
+    }
 
 
 
@@ -53,7 +63,7 @@ public class MotorVehicleModel {
             collision = true;
         }
         else if (checkBottomWallCollision(car)){
-            car.setYPosition(560);
+            car.setYPosition(500);
             collision = true;
         }
         else if (checkLeftWallCollision(car)){

@@ -38,7 +38,7 @@ public class MotorVehicleFactory {
     public static MotorVehicle createRandomVehicle(){
         Random rand = new Random();
 
-        int n = rand.nextInt(4);
+        int n = rand.nextInt(3);
 
         double x = rand.nextDouble(Model.MotorVehicleModel.getWorldSizeX()-100);
         double y = rand.nextDouble(Model.MotorVehicleModel.getWorldSizeY()-60);
@@ -55,12 +55,11 @@ public class MotorVehicleFactory {
             case 2:
                 newVehicle = createScania(x, y);
                 break;
-            //case 3:
-                //newVehicle = createSemiTruck(x, y);
-                //break;
             default:
                 newVehicle = createVolvo240(x, y);
         }
+
+        newVehicle.setDirection(Directions.randomDirection());
 
         return newVehicle;
     };
