@@ -27,13 +27,69 @@ public class MotorVehicleModel {
     public static int getWorldSizeY(){
         return 560;}
 
-    public void addVehicle(MotorVehicle vehicle){
-        if (vehicles.size() < 10){
-            vehicles.add(vehicle);
+    public void gas(double amount){
+        for (MotorVehicle vehicle : vehicles) {
+            vehicle.gas(amount);
         }
     }
 
-    public void removeVehicle(){
+    public void brake(double amount){
+        for (MotorVehicle vehicle : vehicles){
+            vehicle.brake(amount);
+        }
+    }
+
+    public void turboOn(){
+        for (MotorVehicle vehicle : vehicles){
+            if(vehicle instanceof Saab95){
+                ((Saab95) vehicle).setTurboOn();
+            }
+        }
+    }
+
+    public void turboOff(){
+        for (MotorVehicle vehicle : vehicles){
+            if(vehicle instanceof Saab95){
+                ((Saab95) vehicle).setTurboOff();
+            }
+        }
+    }
+
+    public void liftBed(){
+        for (MotorVehicle vehicle: vehicles){
+            if(vehicle instanceof Scania){
+                ((Scania) vehicle).tiltPlatform(-70);
+            }
+        }
+    }
+
+    public void lowerBed(){
+        for (MotorVehicle vehicle : vehicles){
+            if(vehicle instanceof Scania){
+                ((Scania) vehicle).tiltPlatform(70);
+            }
+        }
+    }
+
+    public void startAllVehicles(){
+        for(MotorVehicle vehicle : vehicles){
+            vehicle.startEngine();
+        }
+    }
+
+    public void stopAllVehicles(){
+        for(MotorVehicle vehicle: vehicles){
+            vehicle.stopEngine();
+        }
+    }
+
+    public void addRandomVehicle(){
+        if (vehicles.size() < 10){
+            vehicles.add(MotorVehicleFactory.createRandomVehicle());
+        }
+    }
+
+    public void removeLastVehicle(){
         if (!vehicles.isEmpty()){
             vehicles.remove(vehicles.size()-1);
         }

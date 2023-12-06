@@ -119,14 +119,14 @@ public class MotorVehicleWidgets extends JPanel {
         addCar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.addCar();
+                carC.addVehicle();
             }
         });
 
         removeCar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.removeCar();
+                carC.removeVehicle();
             }
         });
     }

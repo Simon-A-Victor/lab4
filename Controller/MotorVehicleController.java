@@ -1,6 +1,6 @@
 package Controller;
 
-import Model.*;
+import Model.MotorVehicleModel;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -19,63 +19,38 @@ public class MotorVehicleController {
 
     // Calls the gas method for each car once
     void gas(int amount) {
-        double gas = ((double) amount) / 100;
-        for (MotorVehicle car : model.vehicles) {
-            car.gas(gas);
-        }
+        model.gas((double) amount/100);
     }
     void brake(int amount) {
-        double brake = ((double) amount) / 100;
-        for (MotorVehicle car : model.vehicles){
-            car.brake(brake);
-        }
-
+        model.brake((double) amount / 100);
     }
 
     void turboOn(){
-        for (MotorVehicle car : model.vehicles){
-            if(car instanceof Saab95){
-                ((Saab95) car).setTurboOn();
-            }
-        }
+        model.turboOn();
     }
 
     void turboOff(){
-        for (MotorVehicle car : model.vehicles){
-            if(car instanceof Saab95){
-                ((Saab95) car).setTurboOff();
-            }
-        }
+        model.turboOff();
     }
 
     void liftBed(){
-        for (MotorVehicle car: model.vehicles){
-            if(car instanceof Scania){
-                ((Scania) car).tiltPlatform(-70);
-        }}
+        model.liftBed();
     }
     void lowerBed(){
-        for (MotorVehicle car : model.vehicles){
-            if(car instanceof Scania){
-                ((Scania) car).tiltPlatform(70);
-            }}
+        model.lowerBed();
     }
     void startAllVehicles(){
-        for(MotorVehicle car : model.vehicles){
-            car.startEngine();
-        }
+        model.startAllVehicles();
     }
     void stopAllVehicles(){
-        for(MotorVehicle car: model.vehicles){
-            car.stopEngine();
-        }
+        model.stopAllVehicles();
     }
 
-    void addCar(){
-        model.addVehicle(MotorVehicleFactory.createRandomVehicle());
+    void addVehicle(){
+        model.addRandomVehicle();
     }
 
-    void removeCar(){
-        model.removeVehicle();
+    void removeVehicle(){
+        model.removeLastVehicle();
     }
 }
