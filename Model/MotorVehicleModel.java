@@ -1,9 +1,5 @@
 package Model;
 
-import Application.MotorVehiclePositionObserver;
-import Model.Directions;
-import Model.MotorVehicle;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -44,7 +40,7 @@ public class MotorVehicleModel {
                 handleWallCollision(car);
                 int x = (int) Math.round(car.getXPosition());
                 int y = (int) Math.round(car.getYPosition());
-                multiCastPositionChange(x, y, vehicles.indexOf(car));
+                multiCastPositionChange(x, y, car.getModelName());
             }
             multiCastTickUpdate();
         }
@@ -98,9 +94,9 @@ public class MotorVehicleModel {
 
     public void removeObserver(MotorVehiclePositionObserver observer){observers.remove(observer);}
 
-    private void multiCastPositionChange(int x, int y , int motorVehicleIndex){
+    private void multiCastPositionChange(int x, int y , String modelName){
         for (MotorVehiclePositionObserver observer: observers){
-            observer.actOnMotorVehiclePositionUpdate(x, y, motorVehicleIndex);
+            observer.actOnMotorVehiclePositionUpdate(x, y, modelName);
         }
     }
 
