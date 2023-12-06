@@ -1,6 +1,6 @@
 package View;
 
-import Application.MotorVehiclePositionObserver;
+import Model.MotorVehiclePositionObserver;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -13,16 +13,10 @@ import javax.swing.*;
 
 public class DrawPanel extends JPanel implements MotorVehiclePositionObserver {
 
+    private ArrayList<ImageAndPositionInformation> imagesAndPositions;
 
-    private ArrayList<BufferedImage> images;
-
-
-    private ArrayList<Point> points;
-
-
-    public void actOnMotorVehiclePositionUpdate(int x, int y, int index){
-        points.get(index).x = x;
-        points.get(index).y = y;
+    public void actOnMotorVehiclePositionUpdate(int x, int y, String modelName){
+        imagesAndPositions.add(new ImageAndPositionInformation(modelName, new Point(x,y)));
     }
 
     @Override
@@ -35,31 +29,34 @@ public class DrawPanel extends JPanel implements MotorVehiclePositionObserver {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
-        this.images = new ArrayList<BufferedImage>();
-        this.points = new ArrayList<Point>();
-
-        addVehiclesToArrays(modelNames);
+        this.imagesAndPositions = new ArrayList<ImageAndPositionInformation>();
     }
 
-    private void addVehiclesToArrays(ArrayList<String> modelNames) {
-        // Print an error message in case file is not found with a try/catch block
-        try {
-            for (String modelName : modelNames){
-                points.add(new Point());
-                images.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/"+modelName+".jpg")));
+    private class ImageAndPositionInformation{
+        BufferedImage modelImage;
+        Point position;
+
+        public ImageAndPositionInformation(String modelName, Point position){
+            // Print an error message in case file is not found with a try/catch block
+            try {
+                //points.add(new Point());
+                this.modelImage = (ImageIO.read(DrawPanel.class.getResourceAsStream("pics/"+modelName+".jpg")));
+            } catch (IOException ex)
+            {
+                ex.printStackTrace();
             }
-        } catch (IOException ex)
-        {
-            ex.printStackTrace();
+            this.position = position;
         }
     }
+
 
     // This method is called each time the panel updates/refreshes/repaints itself
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (int index  = 0; index < images.size(); index++) {
-            g.drawImage(images.get(index), points.get(index).x, points.get(index).y, null); // see javadoc for more info on the parameters
+        for (ImageAndPositionInformation carInfo : imagesAndPositions) {
+            g.drawImage(carInfo.modelImage, carInfo.position.x, carInfo.position.y, null); // see javadoc for more info on the parameters
         }
+        imagesAndPositions.clear();
     }
 }
