@@ -1,8 +1,10 @@
 package Model;
 
 import Model.MovementStates.MovementState;
+import Model.MovementStates.MovementTrueState;
 import Model.ScaniaMovementStates.ScaniaMovementFalseState;
 import Model.ScaniaMovementStates.ScaniaMovementState;
+import Model.ScaniaMovementStates.ScaniaMovementStateTrue;
 
 import java.awt.*;
 
@@ -28,6 +30,13 @@ public class Scania extends PlatformVehicle {
     public void gas(double amount){
         super.gas(amount);
     }
+
+    @Override
+    public void setMovementStateTrue(){movementState = new ScaniaMovementStateTrue(this);
+    }
+
+    @Override
+    public void setMovementStateFalse(){movementState = new ScaniaMovementFalseState(this);}
 
 }
 
