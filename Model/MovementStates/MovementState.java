@@ -9,4 +9,12 @@ public abstract class MovementState {
         this.vehicle = vehicle;
     }
 
+    public void setTrue(){
+        vehicle.movementState = new MovementTrueState(vehicle);
+    }
+
+    public void setFalse(){
+        vehicle.movementState = new MovementFalseState(vehicle);
+    }
+
 }

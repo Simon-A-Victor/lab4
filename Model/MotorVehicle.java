@@ -17,7 +17,7 @@ public abstract class MotorVehicle implements Movable, Loadable {
     private double y;
     private final int size;
     ActivationState activationState;
-    MovementState movementState;
+    public MovementState movementState;
 
     private final double enginePower; // Engine power of the car
     public MotorVehicle(int nrDoors, Color color, String modelName, double x, double y, int size, double enginePower){
@@ -29,7 +29,7 @@ public abstract class MotorVehicle implements Movable, Loadable {
         this.size = size;
         this.enginePower = enginePower;
         this.setActive();
-        this.setMovementStateFalse();
+        this.movementState = new MovementFalseState(this);
         this.setDirection(Directions.EAST);
     }
 
@@ -73,8 +73,8 @@ public abstract class MotorVehicle implements Movable, Loadable {
         activationState =  new InactiveState(this);
     }
 
-    public void setMovementStateTrue(){movementState = new MovementTrueState(this);}
-    public void setMovementStateFalse(){movementState = new MovementFalseState(this);}
+    public void setMovementStateTrue(){movementState.setTrue();}
+    public void setMovementStateFalse(){movementState.setFalse();}
 
     public void incrementSpeed(double amount) {
         setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower()));
